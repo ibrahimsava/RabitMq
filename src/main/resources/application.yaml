@@ -1,3 +1,46 @@
 spring:
   application:
     name: Rabitmq_Project
+
+  # Connexion à la base de données PostgreSQL lancée par Docker
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rabitmq_project_db
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  # Configuration JPA / Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Connexion à RabbitMQ avec vos identifiants root/root
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: root
+
+  # CONFIGURATION EMAIL DEPLACÉE ICI (sous le bloc spring:)
+  mail:
+    host: smtp.gmail.com   # Correction de l'hôte
+    port: 587
+    username: savadogoibrahim0915@gmail.com
+    password: rxbs zqdg wknk quof
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# Vos propriétés personnalisées (Restent en dehors du bloc spring:)
+app:
+  rabbitmq:
+    queue-name: "orders.v1.queue"
+    exchange-name: "orders.v1.topic"
+    routing-key: "orders.placed.#"

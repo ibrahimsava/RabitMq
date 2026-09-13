@@ -1,4 +1,9 @@
 package com.example.rabitmq_project.dto;
 
-public class UtilisateursReqDto {
+public record UtilisateursReqDto(
+        String nom,
+        String prenom,
+        String adresse
+) {
+
 }
